@@ -1,0 +1,26 @@
+import 'dotenv/config';
+import express from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
+import morgan from 'morgan';
+import { db } from './db.js';
+import authRoutes from './routes/auth.js';
+import indicatorRoutes from './routes/indicators.js';
+import sourceRoutes from './routes/sources.js';
+import tagRoutes from './routes/tags.js';
+import { errorHandler } from './middleware/errorHandler.js';
+
+const app = express();
+app.use(express.json({ limit: '1mb' }));
+app.use(cors());
+app.use(helmet());
+app.use(morgan('dev'));
+app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
+app.use('/api/auth', authRoutes);
+app.use('/api/indicators', indicatorRoutes);
+app.use('/api/sources', sourceRoutes);
+app.use('/api/tags', tagRoutes);
+app.use((req, res) => res.status(404).json({ error: 'Not found' }));
+app.use(errorHandler);
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => { console.log(`Server listening on http://localhost:${PORT}`); });

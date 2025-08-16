@@ -1,0 +1,1 @@
+import { seedDb } from './db.js'; seedDb(); console.log('Database seeded.');
