@@ -1,4 +1,9 @@
-# IOC/Indicators Manager — Full Stack Project (Styled UI)
+# IOC/Indicators Manager 
+
+A system for managing and tracking indicators (IP, Domain, Hash) from various sources.
+Entities: Indicator, Source, Tag, Verdict (malicious/suspicious/benign).
+
+
 **Server:** Node.js, Express, SQLite, JWT, RBAC, Helmet, CORS  
 **Client:** React + Vite + TailwindCSS
 
